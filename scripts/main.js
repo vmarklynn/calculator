@@ -14,6 +14,13 @@ function divide(a, b) {
   return a / b;
 }
 
+function isOperator(symbol) {
+  if (symbol === '+' || symbol === '-' || symbol === '*' || symbol === '/') {
+    return true;
+  }
+  return false;
+}
+
 function operate(a, b, operatorSymbol) {
   switch (operatorSymbol) {
     case '+':
@@ -38,41 +45,44 @@ function operate(a, b, operatorSymbol) {
 const container = document.querySelector(".container");
 const digits = container.querySelector(".digits");
 const nums = document.querySelectorAll("#num");
-const operators = document.querySelectorAll("#operator");
 const resets = document.querySelectorAll("#reset");
 const decimal = document.querySelector("#decimal");
 const equal = document.querySelector("#equal");
 
-let curValue = "";
-let secondaryValue = "";
-let curOperator = "";
-let len = 0;
-let decimalCount = 0;
-let result = 0;
+let firstPress = true;
 
+let curValue = "";
+
+let displayValue = "";
+
+let curOperator = "";
+
+let decimalCount = 0;
 
 
 nums.forEach(num => num.addEventListener('click', () => {
-  if (curValue.length < 9) {
-    secondaryValue = num.textContent.trim();
-    if (curValue[0] != "0" || curValue == "") {
-      if (curOperator.length === 1) {
-        digits.textContent = secondaryValue;
-        curOperator = "";
-        curValue = result.toString();
-
+  if (displayValue.length < 9) {
+    if (!isOperator(num.textContent.trim())) {
+      if (firstPress) {
+        digits.textContent = "";
+        digits.textContent += num.textContent.trim();
+        firstPress = false;
       }
-      else {
-        curValue += secondaryValue;
-        secondaryValue = "";
-      }
-      digits.textContent = curValue;
 
+      displayValue += num.textContent.trim();
+      digits.textContent = displayValue;
+      curValue = displayValue;
     }
-    else {
-      return;
-    }
+    // else {
+    //   curOperator = num.textContent.trim();
+    //   digits.textContent = "";
+    //   displayValue = "";
+    //   if (curOperator != "") {
+    //     displayValue += num.textContent.trim();
+    //     digits.textContent = displayValue;
+    //   }
+    // }
+
   }
 }));
-
 
