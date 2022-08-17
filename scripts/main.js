@@ -51,6 +51,7 @@ const equal = document.querySelector("#equal");
 
 let firstPress = true;
 let waitForOperand = false;
+let decimalState = false;
 let curValue = '';
 let displayValue = '';
 let curOperator = '';
@@ -80,6 +81,7 @@ nums.forEach(num => num.addEventListener('click', (e) => {
       curOperator = num.textContent.trim();
       curValue = displayValue;
       displayValue = '';
+      decimalState = false;
       waitForOperand = true;
     }
   }
@@ -92,6 +94,7 @@ reset.addEventListener('click', () => {
   curOperator = '';
   waitForOperand = false;
   firstPress = true;
+  decimalState = false;
 });
 
 equal.addEventListener('click', () => {
@@ -102,6 +105,15 @@ equal.addEventListener('click', () => {
   waitForOperand = false;
 });
 
+decimal.addEventListener('click', () => {
+  if (!decimalState) {
+    displayValue += decimal.textContent.trim();
+    digits.textContent = displayValue;
+    decimalState = true;
+  }
+
+})
+
 // TODO: Ensure that there is only one operator 
-// TODO: Implement decimal points
+// TODO: Implement decimal points: DONE
 // TODO: Implement equal sign: DONE
