@@ -39,8 +39,9 @@ function operate(a, b, operatorSymbol) {
     default:
       return null;
   }
-
 }
+
+function resetAll()
 
 const container = document.querySelector(".container");
 const digits = container.querySelector(".digits");

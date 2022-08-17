@@ -1,20 +1,20 @@
-.container{
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;  
+  background-color: white;
   min-width: 500px;
   min-height: 600px;
 }
 
-.calculator-body{
+.calculator-body {
   width: 500px;
   height: 700px;
   background-color: #4b9ab4;
   border-radius: 25px;
 }
 
-.display{
+.display {
   background-color: #fff9e9;
   flex-shrink: 0;
   border-radius: 25px;
@@ -22,51 +22,49 @@
   margin: 30px;
 }
 
-.digits{
+.digits {
   font-family: 'Press Start 2P', cursive;
   font-size: 40px;
   text-align: right;
   padding-right: -120px
-
 }
 
-.button-container{
+.button-container {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.button{
+.button {
   background: #fff9e9;
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  margin-left:20px;
-  margin-top:10px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
-#equal{
+
+#equal {
   background: #fff9e9;
   width: 180px;
   height: 90px;
   border-radius: 95%;
   margin-left: 180px;
-  margin-top:10px;
-  grid-column: 2 / 4 ;
+  margin-top: 10px;
+  grid-column: 2 / 4;
 
 }
 
-.button-text{
+.button-text {
   text-align: center;
   font-family: 'Press Start 2P', cursive;
   font-size: 40px;
   padding-top: 25px;
 }
 
-.button-container div.button:hover
-{
+.button-container div.button:hover {
   background-color: #fcf5e4d0;
 }
 
-.button-container div.button:active
-{
+.button-container div.button:active {
   transform: scale(0.98);
 }
