@@ -112,7 +112,7 @@ equal.addEventListener('click', () => {
 });
 
 decimal.addEventListener('click', () => {
-  if (!decimalState) {
+  if (parseFloat(displayValue) % 1 === 0 && !decimalState) {
     displayValue += decimal.textContent.trim();
     digits.textContent = displayValue;
     decimalState = true;
