@@ -41,12 +41,11 @@ function operate(a, b, operatorSymbol) {
   }
 }
 
-function resetAll()
 
 const container = document.querySelector(".container");
 const digits = container.querySelector(".digits");
 const nums = document.querySelectorAll("#num");
-const resets = document.querySelectorAll("#reset");
+const resets = document.querySelector("#reset");
 const decimal = document.querySelector("#decimal");
 const equal = document.querySelector("#equal");
 
@@ -85,6 +84,15 @@ nums.forEach(num => num.addEventListener('click', (e) => {
     }
   }
 }));
+
+reset.addEventListener('click', () => {
+  digits.textContent = '0';
+  curValue = "";
+  displayValue = "";
+  curOperator = "";
+  waitForOperand = false;
+  firstPress = true;
+});
 
 // TODO: Ensure that there is only one operator 
 // TODO: Implement decimal points
