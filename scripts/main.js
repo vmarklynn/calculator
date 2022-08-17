@@ -55,11 +55,10 @@ let decimalState = false;
 let curValue = '';
 let displayValue = '';
 let curOperator = '';
-let decimalCount = 0;
 
 
-nums.forEach(num => num.addEventListener('click', (e) => {
-  // limit the max digits
+nums.forEach(num => num.addEventListener('click', () => {
+  // limit the max digits: Buggy; FIX using round
   if (displayValue.length < 9) {
     if (!isOperator(num.textContent.trim())) {
       // Replaces the 0 default digit in digit.textContent()
@@ -68,9 +67,16 @@ nums.forEach(num => num.addEventListener('click', (e) => {
         digits.textContent += num.textContent.trim();
         firstPress = false;
       }
+      // Bug: Fix 0 not displaying with decimal
+      if (num.textContent.trim() === '0') {
+        if (displayValue.length === 0) {
+          return;
+        }
+      }
       // Normal number will be added to the display
       displayValue += num.textContent.trim();
       digits.textContent = displayValue;
+
     }
     else {
       if (waitForOperand) {
@@ -111,8 +117,7 @@ decimal.addEventListener('click', () => {
     digits.textContent = displayValue;
     decimalState = true;
   }
-
-})
+});
 
 // TODO: Ensure that there is only one operator 
 // TODO: Implement decimal points: DONE
