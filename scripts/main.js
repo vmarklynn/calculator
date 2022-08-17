@@ -51,9 +51,9 @@ const equal = document.querySelector("#equal");
 
 let firstPress = true;
 let waitForOperand = false;
-let curValue = "";
-let displayValue = "";
-let curOperator = "";
+let curValue = '';
+let displayValue = '';
+let curOperator = '';
 let decimalCount = 0;
 
 
@@ -63,7 +63,7 @@ nums.forEach(num => num.addEventListener('click', (e) => {
     if (!isOperator(num.textContent.trim())) {
       // Replaces the 0 default digit in digit.textContent()
       if (firstPress) {
-        digits.textContent = "";
+        digits.textContent = '';
         digits.textContent += num.textContent.trim();
         firstPress = false;
       }
@@ -79,7 +79,7 @@ nums.forEach(num => num.addEventListener('click', (e) => {
       }
       curOperator = num.textContent.trim();
       curValue = displayValue;
-      displayValue = "";
+      displayValue = '';
       waitForOperand = true;
     }
   }
@@ -87,13 +87,21 @@ nums.forEach(num => num.addEventListener('click', (e) => {
 
 reset.addEventListener('click', () => {
   digits.textContent = '0';
-  curValue = "";
-  displayValue = "";
-  curOperator = "";
+  curValue = '';
+  displayValue = '';
+  curOperator = '';
   waitForOperand = false;
   firstPress = true;
 });
 
+equal.addEventListener('click', () => {
+  let result = operate(parseFloat(curValue), parseFloat(displayValue), curOperator);
+  displayValue = result.toString();
+  curOperator = '';
+  digits.textContent = displayValue;
+  waitForOperand = false;
+});
+
 // TODO: Ensure that there is only one operator 
 // TODO: Implement decimal points
-// TODO: Implement equal sign
+// TODO: Implement equal sign: DONE
