@@ -21,6 +21,8 @@ function isOperator(symbol) {
   return false;
 }
 
+
+
 function operate(a, b, operatorSymbol) {
   switch (operatorSymbol) {
     case '+':
@@ -51,6 +53,8 @@ const equal = document.querySelector("#equal");
 
 let firstPress = true;
 
+let waitForOperand = false;
+
 let curValue = "";
 
 let displayValue = "";
@@ -60,29 +64,55 @@ let curOperator = "";
 let decimalCount = 0;
 
 
-nums.forEach(num => num.addEventListener('click', () => {
+nums.forEach(num => num.addEventListener('click', (e) => {
+  // limit the max digits
   if (displayValue.length < 9) {
     if (!isOperator(num.textContent.trim())) {
+      // Replaces the 0 default digit in digit.textContent()
       if (firstPress) {
         digits.textContent = "";
         digits.textContent += num.textContent.trim();
         firstPress = false;
       }
-
+      // Normal number will be added to the display
       displayValue += num.textContent.trim();
       digits.textContent = displayValue;
-      curValue = displayValue;
     }
-    // else {
-    //   curOperator = num.textContent.trim();
-    //   digits.textContent = "";
-    //   displayValue = "";
-    //   if (curOperator != "") {
-    //     displayValue += num.textContent.trim();
-    //     digits.textContent = displayValue;
-    //   }
-    // }
+    else {
+      // if (operatorStatus) {
+      //   let result = operate(parseFloat(curValue), parseFloat(displayValue), curOperator);
+      //   curOperator = num.textContent.trim();
+      //   displayValue = result.toString();
+      //   curValue = displayValue;
+      //   digits.textContent = displayValue;
+      //   operatorStatus = false;
+      // }
+      // // If there are no operators, clear the displayValue, record previous
+      // // operand
+      // else {
+      //   curOperator = num.textContent.trim();
+      //   curValue = displayValue;
+      //   displayValue = "";
+      //   operatorStatus = true;
 
+      // }
+
+      if (waitForOperand) {
+        let result = operate(parseFloat(curValue), parseFloat(displayValue), curOperator);
+        displayValue = result.toString();
+        digits.textContent = displayValue;
+      }
+      curOperator = num.textContent.trim();
+      curValue = displayValue;
+      displayValue = "";
+
+      waitForOperand = true;
+
+
+
+
+
+    }
   }
 }));
 
