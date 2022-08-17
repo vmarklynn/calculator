@@ -21,8 +21,6 @@ function isOperator(symbol) {
   return false;
 }
 
-
-
 function operate(a, b, operatorSymbol) {
   switch (operatorSymbol) {
     case '+':
@@ -52,15 +50,10 @@ const decimal = document.querySelector("#decimal");
 const equal = document.querySelector("#equal");
 
 let firstPress = true;
-
 let waitForOperand = false;
-
 let curValue = "";
-
 let displayValue = "";
-
 let curOperator = "";
-
 let decimalCount = 0;
 
 
@@ -79,24 +72,6 @@ nums.forEach(num => num.addEventListener('click', (e) => {
       digits.textContent = displayValue;
     }
     else {
-      // if (operatorStatus) {
-      //   let result = operate(parseFloat(curValue), parseFloat(displayValue), curOperator);
-      //   curOperator = num.textContent.trim();
-      //   displayValue = result.toString();
-      //   curValue = displayValue;
-      //   digits.textContent = displayValue;
-      //   operatorStatus = false;
-      // }
-      // // If there are no operators, clear the displayValue, record previous
-      // // operand
-      // else {
-      //   curOperator = num.textContent.trim();
-      //   curValue = displayValue;
-      //   displayValue = "";
-      //   operatorStatus = true;
-
-      // }
-
       if (waitForOperand) {
         let result = operate(parseFloat(curValue), parseFloat(displayValue), curOperator);
         displayValue = result.toString();
@@ -105,14 +80,11 @@ nums.forEach(num => num.addEventListener('click', (e) => {
       curOperator = num.textContent.trim();
       curValue = displayValue;
       displayValue = "";
-
       waitForOperand = true;
-
-
-
-
-
     }
   }
 }));
 
+// TODO: Ensure that there is only one operator 
+// TODO: Implement decimal points
+// TODO: Implement equal sign
